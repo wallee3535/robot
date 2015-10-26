@@ -96,7 +96,7 @@ public class Curve {
 
 	public static void main(String[] args){
 		Curve c = new Curve(20, 260, 50, 10, 250, 300, 300, 200);
-		System.out.println(c.getAngle()*180/Math.PI);
+
 	}
 
 }

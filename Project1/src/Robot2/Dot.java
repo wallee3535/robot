@@ -72,7 +72,7 @@ public class Dot {
 	public static void main(String[] args){
 		Dot a= new Dot(1,1);
 		Dot b= new Dot(-1,1);
-		System.out.println(b.rotationTo(a));
+
 	}
 
 }
