@@ -22,27 +22,33 @@ public class Dot {
 		return new Dot(ux,uy);	
 	}
 	public Dot plus(Dot b){
-		return new Dot(x+b.x, y+b.y);
+		return new Dot(x+b.x, y+b.y, z+b.z);
 	}
+	
 	public Dot minus(Dot b){
-		return new Dot(x-b.x, y-b.y);
+		return new Dot(x-b.x, y-b.y, z-b.z);
 	}
+	
 	public Dot times(double m){
-		return new Dot(x*m, y*m);
+		return new Dot(x*m, y*m, z*m);
 	}
-	public void print(Dot a){
-		System.out.println("x= "+x+", y= "+y);
+	
+	public void print(){
+		System.out.println("x= "+x+", y= "+y+",z= "+z);
 	}
+	
 	public boolean crossSign(Dot b){
-		if(x*b.y-b.x*y>0)return true;
-		return false;
+		return (x*b.y-b.x*y>0);
 	}
+	
 	public double dotProd(Dot b){
-		return x*b.x+y*b.y;
+		return x*b.x+y*b.y+z*b.z;
 	}
+	
 	public double mag(){
-		return Math.sqrt(x*x+y*y);
+		return Math.sqrt(x*x+y*y+z*z);
 	}
+	
 	public double shortAngle(Dot b){
 		return Math.acos(this.dotProd(b)/this.mag()/b.mag());
 	}
@@ -63,11 +69,6 @@ public class Dot {
 			return 2*Math.PI-this.shortAngle(b);
 		}*/
 	}
-	
-	public void print(){
-		System.out.println("x= " +this.x+" y= "+this.y);
-	}
-	
 	
 	public static void main(String[] args){
 		Dot a= new Dot(1,1);
