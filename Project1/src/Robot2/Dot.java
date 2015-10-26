@@ -16,7 +16,7 @@ public class Dot {
 		return new Dot(x,y);
 	}
 	public static Dot circumcenter(Dot a, Dot b, Dot c){
-		double d= (a.x*(b.y-c.y) + b.x*(c.y-a.y) + c.x*(a.y-b.y));
+		double d= 2*(a.x*(b.y-c.y) + b.x*(c.y-a.y) + c.x*(a.y-b.y));
 		double ux = ((a.x*a.x +a.y*a.y)*(b.y-c.y) + (b.x*b.x+b.y*b.y)*(c.y-a.y) + (c.x*c.x+c.y*c.y)*(a.y-b.y))/d;
 		double uy = ((a.x*a.x +a.y*a.y)*(c.x-b.x) + (b.x*b.x+b.y*b.y)*(a.x-c.x) + (c.x*c.x+c.y*c.y)*(b.x-a.x))/d;
 		return new Dot(ux,uy);	
@@ -39,6 +39,10 @@ public class Dot {
 	
 	public boolean crossSign(Dot b){
 		return (x*b.y-b.x*y>0);
+	}
+	
+	public double crossMag(Dot b){
+		return x*b.y-b.x*y;
 	}
 	
 	public double dotProd(Dot b){
@@ -71,9 +75,11 @@ public class Dot {
 	}
 	
 	public static void main(String[] args){
-		Dot a= new Dot(1,1);
-		Dot b= new Dot(-1,1);
-
+		Dot a= new Dot(314,21);
+		Dot b= new Dot(124,34);
+		Dot c= new Dot(1,98);
+		Dot d = Dot.circumcenter(a, b, c);
+		d.print();
 	}
 
 }

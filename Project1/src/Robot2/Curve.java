@@ -19,6 +19,8 @@ public class Curve {
 		this.p2=p2;
 		this.p3=p3;
 		this.p4=p4;
+		calcPath(numDiv);
+		
 	}
 	
 	public Curve (double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4){
@@ -182,7 +184,7 @@ public class Curve {
 	public void reduceAngle(ArrayList<Curve> arr){
 		
 		double currentAngle= getAngle();
-		System.out.println("*"+currentAngle*180/Math.PI);
+
 		if(currentAngle<Math.PI/2){//less than 90 degrees
 			arr.add(this.clone());
 			
@@ -209,15 +211,49 @@ public class Curve {
 		System.out.println("firstNinety() returned -1"); //error, should never happen
 		return -1;
 	}
-	public void approx(ArrayList<Dot> arr){
-		Dot middle= bezExplicit(numDiv/2);
+	public void approx(ArrayList<Arc> arr){
+		if(path==null){
+			calcPath(numDiv);
+		}
+		Dot middle= bezExplicit(0.5);
+		Arc a = new Arc(p1, middle, p4);
+		a.print();
+		if(withinError(a, Globals.error)){
+			System.out.println("within error, adding arc");
+			arr.add(a);
+		}else{
+			ArrayList<Curve> temp= new ArrayList<Curve>();
+			bezDiv(numDiv/2, temp);
+			temp.get(0).approx(arr);
+			temp.get(1).approx(arr);
+		}
+	}
+	public boolean withinError(Arc a, double error){
+
 		
+		for(Dot d: path){
+			double diff= d.minus(a.center).mag()-a.radius;
+			//a.center.print();
+			System.out.println("diff "+ diff);
+			if(Math.abs(diff)>error){
+				return false;
+			}
+		}
+		return true;
 	}
 	public static void main(String[] args){
-		Curve c = new Curve(20, 260, 50, 10, 250, 300, 300, 200);
-		System.out.println(c.angle);
-		c.p1.print();
-		c.calcAngle();
+		Curve c=new Curve(20, 260, 50, 10, 250, 30, 300, 200);
+		
+		ArrayList<Arc> arr= new ArrayList<Arc>();
+		Dot middle= c.bezExplicit(0.5);
+		Arc a = new Arc(c.p1.dup(), middle, c.p4.dup());
+		a.print();
+/*
+		if(c.path==null){
+			c.calcPath(10);
+		}*/
+		
+		c.approx(arr);
 		
 	}
 

@@ -23,8 +23,8 @@ public class BezierApproximation4 extends Applet {
 	ArrayList<Dot> noCurvaturePoints; 
 	ArrayList<Curve> smallAngle;
 	ArrayList<Dot> smallAnglePoints; 
-	ArrayList<Curve> noError;
-	ArrayList<Dot> noErrorPoints; 
+	ArrayList<Arc> arcs;
+	ArrayList<Arc> arcPoints; 
 	
 	
 	public void init() {
@@ -35,16 +35,17 @@ public class BezierApproximation4 extends Applet {
 		smallAnglePoints= new ArrayList<Dot>();
 		rawCurves = new ArrayList<Curve>();
 		rawPoints= new ArrayList<Dot>();
-		noError = new ArrayList<Curve>();
-		noErrorPoints= new ArrayList<Dot>();
-		//rawCurves.add(new Curve(20, 260, 50, 10, 250, 30, 300, 200));
+		arcs = new ArrayList<Arc>();
+		
+		rawCurves.add(new Curve(20, 260, 50, 10, 250, 30, 300, 200));
 		//rawCurves.add(new Curve(20, 260, 50, 10, 250, 300, 300, 200));
 		//rawCurves.add(new Curve(300, 200, 350, 250, 375, 35, 400, 200));
-		rawCurves.add(new Curve(100,260,10,10,350,35,150,200));
+		//rawCurves.add(new Curve(100,260,10,10,350,35,150,200));
 		Compute();
 	}
 
 	public void Compute() {
+		
 		Curve r= new Curve();
 		Curve s= new Curve();
 		
@@ -60,18 +61,18 @@ public class BezierApproximation4 extends Applet {
 		}
 		
 		for(Curve c : noCurvature){
-			//System.out.println("angle:" + c.getAngle());
+			System.out.println("angle:" + c.getAngle());
 			
 			c.reduceAngle(smallAngle);
 		}
 		for(Curve c : smallAngle){
-			
+			c.approx(arcs);
 		}
 
 		for(Curve c : rawCurves) c.pathCopy(rawPoints);
 		for(Curve c : noCurvature) c.pathCopy(noCurvaturePoints);
 		for(Curve c : smallAngle) c.pathCopy(smallAnglePoints);
-		System.out.println(smallAngle.size());
+		//System.out.println(arcs.size());
 	}
 
 	
@@ -110,6 +111,10 @@ public class BezierApproximation4 extends Applet {
 		//drawPoints(g2d, rawPoints);
 		g2d.setColor(Color.GREEN);
 		drawPoints(g2d, smallAnglePoints);
+		g2d.setColor(Color.BLACK);
+		for(Arc a: arcs){
+			a.draw(g2d);
+		}
 		
 		if(curveChange!=null){
 			g2d.setColor(Color.BLUE);
@@ -118,6 +123,13 @@ public class BezierApproximation4 extends Applet {
 	}
 	public void drawPoints(Graphics2D g2d, Dot[] points){
 		for (int i=0; i< points.length-1; i++){
+			if(i%(2*(numDiv+1))==0){
+				g2d.setColor(Color.red);
+			}
+			if(i%(2*(numDiv+1))==numDiv){
+				g2d.setColor(Color.green);
+			}
+		
 			g2d.fillOval((int)points[i].x, (int)points[i].y, 4, 4);
 			g2d.drawLine((int) points[i].x, (int) points[i].y, (int) points[i+1].x,
 					(int) points[i+1].y);
