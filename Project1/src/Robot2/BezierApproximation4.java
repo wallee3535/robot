@@ -37,9 +37,9 @@ public class BezierApproximation4 extends Applet {
 		rawPoints= new ArrayList<Dot>();
 		arcs = new ArrayList<Arc>();
 		
-		rawCurves.add(new Curve(20, 260, 50, 10, 250, 30, 300, 200));
-		//rawCurves.add(new Curve(20, 260, 50, 10, 250, 300, 300, 200));
-		//rawCurves.add(new Curve(300, 200, 350, 250, 375, 35, 400, 200));
+		//rawCurves.add(new Curve(20, 260, 50, 10, 250, 30, 300, 200));
+		rawCurves.add(new Curve(20, 260, 50, 10, 250, 300, 300, 200));
+		rawCurves.add(new Curve(300, 200, 350, 250, 375, 35, 400, 200));
 		//rawCurves.add(new Curve(100,260,10,10,350,35,150,200));
 		Compute();
 	}
