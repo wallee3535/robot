@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="82.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="timelinePane" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="28.0" style="-fx-background-color: #cacaca;">
+               <children>
+                  <Rectangle fx:id="bufferInd" arcHeight="5.0" arcWidth="5.0" fill="#ffc3004d" height="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Rectangle fx:id="scrubber" fill="#76d000" height="28.0" stroke="#19bf42" strokeWidth="0.5" width="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
+            <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="48.0" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#resetTimeToZero" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #CACACA; -fx-background-radius: 0;">
+                     <graphic>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Rectangle fill="#5e5e5e" height="17.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="2.5">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Rectangle>
+                              <Polygon fill="#5e5e5e" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                <points>
+                                  <Double fx:value="-15" />
+                                  <Double fx:value="8.66" />
+                                  <Double fx:value="0" />
+                                  <Double fx:value="17.321" />
+                                  <Double fx:value="0.0" />
+                                  <Double fx:value="0.0" />
+                                </points>
+                              </Polygon>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="playButton" mnemonicParsing="false" prefHeight="48.0" prefWidth="72.0" style="-fx-background-color: #CACACA; -fx-background-radius: 0;">
+                     <graphic>
+                        <StackPane>
+                           <children>
+                              <Polygon fill="#5e5e5e" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                 <points>
+                                    <Double fx:value="15" />
+                                    <Double fx:value="8.66" />
+                                    <Double fx:value="0" />
+                                    <Double fx:value="17.321" />
+                                    <Double fx:value="0.0" />
+                                    <Double fx:value="0.0" />
+                                 </points>
+                              </Polygon>
+                           </children>
+                        </StackPane>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#downloadAnimation" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: LIGHTGREEN; -fx-background-radius: 0;">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <Polyline fill="TRANSPARENT" stroke="#5e5e5e" strokeLineJoin="ROUND" strokeWidth="3.0">
+                                <points>
+                                  <Double fx:value="0.0" />
+                                  <Double fx:value="-15.0" />
+                                  <Double fx:value="0.0" />
+                                  <Double fx:value="0.0" />
+                                  <Double fx:value="7.0" />
+                                  <Double fx:value="-7.0" />
+                                  <Double fx:value="0.0" />
+                                  <Double fx:value="0.0" />
+                                  <Double fx:value="-7.0" />
+                                  <Double fx:value="-7.0" />
+                                </points>
+                              </Polyline>
+                              <Rectangle fill="#5e5e5e" height="2.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="15.0" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</fx:root>
